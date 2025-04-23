@@ -3,7 +3,7 @@
 # and notification system integration.
 #
 # Handles compiling and package installation
-FROM ubuntu:22.04 AS compile-image
+FROM ubuntu:24.10 AS compile-image
 
 # Install build dependencies
 ARG DEBIAN_FRONTEND=noninteractive
@@ -38,7 +38,7 @@ RUN cd /pyrdp \
 
 
 # Handles runtime only (minimize size for distribution)
-FROM ubuntu:22.04 AS runtime-image
+FROM ubuntu:24.10 AS runtime-image
 
 # Install runtime dependencies except pre-built venv
 ARG DEBIAN_FRONTEND=noninteractive
