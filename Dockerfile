@@ -1,5 +1,5 @@
 # Handles compiling and package installation
-FROM ubuntu:22.04 AS compile-image
+FROM ubuntu:24.10 AS compile-image
 
 # Install build dependencies
 ARG DEBIAN_FRONTEND=noninteractive
@@ -32,7 +32,7 @@ RUN cd /pyrdp \
 
 
 # Handles runtime only (minimize size for distribution)
-FROM ubuntu:22.04 AS runtime-image
+FROM ubuntu:24.10 AS runtime-image
 
 # Install runtime dependencies except pre-built venv
 ARG DEBIAN_FRONTEND=noninteractive
@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3 \
         libegl1 libxcb-cursor0 libxkbcommon-x11-0 libxcb-icccm4 libxcb-keysyms1 \
         libnotify-bin \
         # Runtime requirement for PyAV (pyrdp-convert to MP4)
-        libavcodec58 libavdevice58 \
+        libavcodec61 libavdevice61 \
         # minimize image size
         && rm -rf /var/lib/apt/lists/*
 
